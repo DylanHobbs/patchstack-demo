@@ -25,5 +25,9 @@
         "tailwindcss": "^2.1.2",
         "vue": "^3.0.5",
         "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "@oruga-ui/oruga-next": "^0.4.8",
+        "@oruga-ui/theme-bulma": "^0.1.5"
     }
 }
