@@ -21,7 +21,7 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-**After this or otherwise the following commands should get you** up and running: 
+After this or otherwise the following commands should get you up and running: 
 
 ```bash
 composer install                          # Install deps 
