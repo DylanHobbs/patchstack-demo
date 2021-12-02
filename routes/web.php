@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VulnerabilityController;
+use App\Models\Vulnerability;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,21 +19,13 @@ use Inertia\Inertia;
 
 Route::get('/', [VulnerabilityController::class, 'index'])->name('dashboard');
 
+Route::get('/edit/{vulnerability}', [VulnerabilityController::class, 'edit'])->name('edit');
+Route::post('/update', [VulnerabilityController::class, 'update'])->name('update');
 
-//Route::get('/dashboard', function () {
-//    return Inertia::render('Dashboard');
-//})->name('dashboard');
+Route::get('/create', [VulnerabilityController::class, 'create'])->name('create');
+Route::post('/store', [VulnerabilityController::class, 'store'])->name('store');
 
-Route::get('/create', function () {
-    return Inertia::render('Create');
-})->name('create');
+Route::get('/show/{vulnerability}', [VulnerabilityController::class, 'show'])->name('show');
 
-Route::get('/show', function () {
-    return Inertia::render('Show');
-})->name('show');
 
-Route::get('/edit', function () {
-    return Inertia::render('Edit');
-})->name('edit');
-
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';
