@@ -1,5 +1,5 @@
 <template>
-    <Head title="Dashboard" />
+    <Head title="Dashboard"/>
 
     <BreezeGuestLayout>
         <template #header>
@@ -12,12 +12,17 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <Link href="/create" method="get">
-                            <o-button variant="warning">
-                                Create New Entry
-                            </o-button>
-                        </Link>
+                        <o-field>
+                            <o-input @input="search" v-model="searchQuery" expanded placeholder="Search Vulnerabilities" size="large"></o-input>
+                            <Link href="/create" method="get">
+                                <o-button size="large" variant="warning">
+                                    Create New Entry
+                                </o-button>
+                            </Link>
+                        </o-field>
                         <o-table
+                            paginated
+                            :per-page="10"
                             :data="vulnerabilities"
                             ref="table"
                             striped
@@ -43,11 +48,11 @@
                                 </Link>
                             </o-table-column>
                             <o-table-column field="delete" label="Delete" sortable v-slot="props">
-                                    <Link :href="'/destroy/' + props.row.id" preserve-scroll method="delete">
-                                        <o-button variant="danger">
-                                            Delete
-                                        </o-button>
-                                    </Link>
+                                <Link :href="'/destroy/' + props.row.id" preserve-scroll method="delete">
+                                    <o-button variant="danger">
+                                        Delete
+                                    </o-button>
+                                </Link>
                             </o-table-column>
                         </o-table>
                     </div>
@@ -59,8 +64,8 @@
 
 <script>
 import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import { Head } from '@inertiajs/inertia-vue3';
-import { Link } from '@inertiajs/inertia-vue3'
+import {Head} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/inertia-vue3'
 
 export default {
     components: {
@@ -76,13 +81,15 @@ export default {
     },
     data() {
         return {
-            columns: [
-                'Title',
-                'More Info',
-                'Edit',
-                'Delete',
-            ]
+            searchQuery: '',
         }
+    },
+    methods: {
+        search() {
+            this.$inertia.get("/search",
+                {query: this.searchQuery},
+                {preserveState: true, preserveScroll: true, only: ['vulnerabilities']});
+        },
     },
 }
 </script>

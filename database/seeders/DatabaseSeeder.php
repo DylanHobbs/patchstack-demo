@@ -130,5 +130,7 @@ class DatabaseSeeder extends Seeder
         foreach ($oswap_2021 as $vul) {
             Vulnerability::create($vul);
         }
+
+        Vulnerability::factory()->count(1000)->create();
     }
 }

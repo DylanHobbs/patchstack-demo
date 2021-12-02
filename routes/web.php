@@ -28,4 +28,6 @@ Route::post('/store', [VulnerabilityController::class, 'store'])->name('store');
 Route::get('/show/{vulnerability}', [VulnerabilityController::class, 'show'])->name('show');
 
 Route::delete('/destroy/{vulnerability}', [VulnerabilityController::class, 'destroy'])->name('destroy');
+
+Route::get('/search', [VulnerabilityController::class, 'search'])->name('search');
 //require __DIR__.'/auth.php';
