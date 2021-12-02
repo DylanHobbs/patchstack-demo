@@ -20,7 +20,7 @@ use Inertia\Inertia;
 Route::get('/', [VulnerabilityController::class, 'index'])->name('dashboard');
 
 Route::get('/edit/{vulnerability}', [VulnerabilityController::class, 'edit'])->name('edit');
-Route::post('/update', [VulnerabilityController::class, 'update'])->name('update');
+Route::post('/update/{vulnerability}', [VulnerabilityController::class, 'update'])->name('update');
 
 Route::get('/create', [VulnerabilityController::class, 'create'])->name('create');
 Route::post('/store', [VulnerabilityController::class, 'store'])->name('store');

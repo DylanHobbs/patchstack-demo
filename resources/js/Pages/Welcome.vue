@@ -24,10 +24,18 @@
                                 <a target="_blank" :href="props.row.url">{{ props.row.url }}</a>
                             </o-table-column>
                             <o-table-column field="edit" label="Edit" sortable v-slot="props">
-                                <o-button variant="primary" @click="">Edit</o-button>
+                                <Link :href="'/edit/' + props.row.id" preserve-scroll method="get">
+                                    <o-button variant="primary">
+                                        Edit
+                                    </o-button>
+                                </Link>
                             </o-table-column>
                             <o-table-column field="show" label="Show" sortable v-slot="props">
-                                <o-button variant="info" @click="">Show</o-button>
+                                <Link :href="'/show/' + props.row.id" preserve-scroll method="get">
+                                    <o-button variant="info">
+                                        Show
+                                    </o-button>
+                                </Link>
                             </o-table-column>
                             <o-table-column field="delete" label="Delete" sortable v-slot="props">
                                     <Link :href="'/destroy/' + props.row.id" preserve-scroll method="delete">
