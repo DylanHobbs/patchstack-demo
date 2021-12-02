@@ -21,16 +21,20 @@
                                 {{ props.row.title }}
                             </o-table-column>
                             <o-table-column field="moreInfo" label="More Info" sortable v-slot="props">
-                                {{ props.row.url }}
+                                <a target="_blank" :href="props.row.url">{{ props.row.url }}</a>
                             </o-table-column>
                             <o-table-column field="edit" label="Edit" sortable v-slot="props">
-                                <o-button @click="">Edit</o-button>
+                                <o-button variant="primary" @click="">Edit</o-button>
                             </o-table-column>
                             <o-table-column field="show" label="Show" sortable v-slot="props">
-                                <o-button @click="">Show</o-button>
+                                <o-button variant="info" @click="">Show</o-button>
                             </o-table-column>
                             <o-table-column field="delete" label="Delete" sortable v-slot="props">
-                                <o-button @click="">Delete</o-button>
+                                    <Link :href="'/destroy/' + props.row.id" preserve-scroll method="delete">
+                                        <o-button variant="danger">
+                                            Delete
+                                        </o-button>
+                                    </Link>
                             </o-table-column>
                         </o-table>
                     </div>
@@ -43,11 +47,13 @@
 <script>
 import BreezeGuestLayout from '@/Layouts/Guest.vue'
 import { Head } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     components: {
         BreezeGuestLayout,
         Head,
+        Link
     },
     props: {
         vulnerabilities: {
